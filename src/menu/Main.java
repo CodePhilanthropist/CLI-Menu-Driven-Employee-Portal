@@ -57,6 +57,8 @@ public class Main {
                     list.deleteEmployeeByID(idToDelete);
                     break;
                 case 7:
+                    list.sortEmployeesBySalary();
+                case 8:
                     System.out.println("\nThis program will exit now!");
                     System.exit(0);
                     break;
