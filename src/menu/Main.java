@@ -10,7 +10,7 @@ public class Main {
         int option = 0;
 
         do{
-            System.out.println("====== Welcome to Employee Portal ======");
+            System.out.println("\n====== Welcome to Employee Portal ======");
             System.out.println("1. Add Employee");
             System.out.println("2. Search Employee");
             System.out.println("3. Display All Employee");
@@ -26,6 +26,7 @@ public class Main {
                     System.out.println("Enter employee's ID number: ");
                     int idNumber = scans.nextInt();
                     System.out.println("Enter employee's firstname: ");
+                    scans.nextLine();
                     String firstName = scans.nextLine();
                     System.out.println("Enter employee's lastname: ");
                     String lastName = scans.nextLine();
