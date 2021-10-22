@@ -66,6 +66,8 @@ public class Main {
                     break;
                 case 7:
                     list.sortEmployeesBySalary();
+                    list.displayAll();
+                    break;
                 case 8:
                     System.out.println("\nThis program will exit now!");
                     System.exit(0);
