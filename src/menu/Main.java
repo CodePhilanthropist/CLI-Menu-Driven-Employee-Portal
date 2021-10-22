@@ -25,21 +25,21 @@ public class Main {
                 case 1:
 
                     System.out.println("Enter employee's ID number: ");
-                    int idNumber = scans.nextInt();
+                    String tempNumber = scans.nextLine();
+                    int idNumber = Integer.parseInt(tempNumber);
                     System.out.println("Enter employee's firstname: ");
-                    scans.nextLine();
                     String firstName = scans.nextLine();
                     System.out.println("Enter employee's lastname: ");
                     String lastName = scans.nextLine();
                     System.out.println("Enter employee's salary: ");
-                    double salary = scans.nextDouble();
+                    String tempSalary = scans.nextLine();
+                    double salary = Double.parseDouble(tempSalary);
                     list.addEmployee(firstName, lastName, idNumber, salary);
                     break;
 
                 case 2:
                     System.out.println("Search with firstname or lastname: ");
                     String searchQuery = scans.nextLine();
-                    scans.nextLine();
                     list.searchEmployee(searchQuery);
                     break;
                 case 3:
