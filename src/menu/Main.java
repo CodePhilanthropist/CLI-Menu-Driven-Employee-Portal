@@ -37,6 +37,7 @@ public class Main {
 
                 case 2:
                     System.out.println("Search with firstname or lastname: ");
+                    scans.nextLine();
                     String searchQuery = scans.nextLine();
                     list.searchEmployee(searchQuery);
                     break;
