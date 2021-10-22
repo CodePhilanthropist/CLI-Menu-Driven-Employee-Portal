@@ -15,7 +15,7 @@ public class Main {
             System.out.println("2. Search Employee");
             System.out.println("3. Display All Employee");
             System.out.println("4. Get The Total Number of Employees");
-            System.out.println("5. Get The Total Number of Employees");
+            System.out.println("5. Get the Total Average of Salary");
             System.out.println("6. Delete an Employee based on the ID ");
             System.out.println("7. Display and count employee according to the salary range.");
             System.out.println("8. Exit");
