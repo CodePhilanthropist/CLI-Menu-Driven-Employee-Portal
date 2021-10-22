@@ -7,7 +7,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner scans = new Scanner(System.in);
         EmployeeList list = new EmployeeList();
-        int option = 0;
+        String option;
+        int choice;
 
         do{
             System.out.println("\n====== Welcome to Employee Portal ======");
@@ -20,8 +21,9 @@ public class Main {
             System.out.println("7. Display and count employee according to the salary range.");
             System.out.println("8. Exit");
             System.out.print("Enter answer: ");
-            option = scans.nextInt();
-            switch (option){
+            option = scans.nextLine();
+            choice = Integer.parseInt(option);
+            switch (choice){
                 case 1:
 
                     System.out.println("Enter employee's ID number: ");
@@ -53,7 +55,8 @@ public class Main {
                     break;
                 case 6:
                     System.out.println("Enter the ID to delete: ");
-                    int idToDelete = scans.nextInt();
+                    String tempIdToDelete = scans.nextLine();
+                    int idToDelete = Integer.parseInt(tempIdToDelete);
                     list.deleteEmployeeByID(idToDelete);
                     break;
                 case 7:
@@ -67,7 +70,7 @@ public class Main {
                     System.out.println();
                     break;
             }
-        }while(option != 7);
+        }while(choice != 7);
     }
 }
 
