@@ -105,18 +105,22 @@ class EmployeeList{
 
     void searchEmployee(String param){
         Node currentNode = head;
-        if(param.equals(currentNode.firstName)){
+        while(currentNode != null){
+            if(param.equals(currentNode.firstName)){
 
-            System.out.print("ID\tLAST\tFIRST\tSALARY");
-            System.out.println();
-            System.out.printf("%d\t%s\t%s\t%.2f", currentNode.idNumber, currentNode.lastName, currentNode.firstName, currentNode.salary);
-        }else if(param.equals(currentNode.lastName)){
+                System.out.print("ID\tLAST\tFIRST\tSALARY");
+                System.out.println();
+                System.out.printf("%d\t%s\t%s\t%.2f", currentNode.idNumber, currentNode.lastName, currentNode.firstName, currentNode.salary);
+            }else if(param.equals(currentNode.lastName)){
 
-            System.out.print("ID\tLAST\tFIRST\tSALARY");
-            System.out.println();
-            System.out.printf("%d\t%s\t%s\t%.2f", currentNode.idNumber, currentNode.lastName, currentNode.firstName, currentNode.salary);
+                System.out.print("ID\tLAST\tFIRST\tSALARY");
+                System.out.println();
+                System.out.printf("%d\t%s\t%s\t%.2f", currentNode.idNumber, currentNode.lastName, currentNode.firstName, currentNode.salary);
+            }
+            currentNode = currentNode.next;
         }
     }
+
 
     void displayAll(){
         if(head == null){
