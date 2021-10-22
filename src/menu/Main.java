@@ -1,5 +1,6 @@
 package menu;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -105,6 +106,9 @@ class EmployeeList{
 
     void searchEmployee(String param){
         Node currentNode = head;
+        currentNode.firstName = currentNode.firstName.toLowerCase();
+        currentNode.lastName = currentNode.lastName.toLowerCase();
+        param = param.toLowerCase();
         while(currentNode != null){
             if(param.equals(currentNode.firstName)){
 
