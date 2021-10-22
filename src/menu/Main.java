@@ -125,18 +125,19 @@ class EmployeeList{
         Node lastNode;
         String theFirstName = currentNode.firstName.toLowerCase();
         String theLastName = currentNode.lastName.toLowerCase();
+        String theFirstName2 = currentNode.firstName.toLowerCase();
+        String theLastName2 = currentNode.lastName.toLowerCase();
         param = param.toLowerCase();
         System.out.print("ID\tLAST\tFIRST\tSALARY");
         System.out.println();
 
         while(currentNode != null){
             if (param.equals(theFirstName) || param.equals(theLastName)) {
-
                 System.out.printf("\n%d\t%s\t%s\t%.2f", currentNode.idNumber, currentNode.lastName, currentNode.firstName, currentNode.salary);
             }
             lastNode = currentNode;
             currentNode = currentNode.next;
-            if (currentNode == null){
+            if (param.equals(theFirstName2) || param.equals(theLastName2)){
                 System.out.printf("\n%d\t%s\t%s\t%.2f", lastNode.idNumber, lastNode.lastName, lastNode.firstName, lastNode.salary);
             }
         }
