@@ -15,9 +15,10 @@ public class Main {
             System.out.println("2. Search Employee");
             System.out.println("3. Display All Employee");
             System.out.println("4. Get The Total Number of Employees");
-            System.out.println("5. Delete an Employee based on the ID ");
-            System.out.println("6. Display and count employee according to the salary range.");
-            System.out.println("7. Exit");
+            System.out.println("5. Get The Total Number of Employees");
+            System.out.println("6. Delete an Employee based on the ID ");
+            System.out.println("7. Display and count employee according to the salary range.");
+            System.out.println("8. Exit");
             System.out.print("Enter answer: ");
             option = scans.nextInt();
             switch (option){
