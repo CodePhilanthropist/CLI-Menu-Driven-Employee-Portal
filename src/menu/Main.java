@@ -41,9 +41,13 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.println("Search with firstname or lastname: ");
-                    String searchQuery = scans.nextLine();
-                    list.searchEmployee(searchQuery);
+                    try{
+                        System.out.println("Search with firstname or lastname: ");
+                        String searchQuery = scans.nextLine();
+                        list.searchEmployee(searchQuery);
+                    }catch (NullPointerException e){
+                        System.out.print("You have no employees!");
+                    }
                     break;
                 case 3:
                     list.displayAll();
@@ -71,7 +75,7 @@ public class Main {
                     System.out.println();
                     break;
             }
-        }while(choice != 7);
+        }while(choice != 8);
     }
 }
 
@@ -104,26 +108,41 @@ class EmployeeList{
         }
     }
 
-    void searchEmployee(String param){
-        Node currentNode = head;
-        currentNode.firstName = currentNode.firstName.toLowerCase();
-        currentNode.lastName = currentNode.lastName.toLowerCase();
-        param = param.toLowerCase();
-        while(currentNode != null){
-            if(param.equals(currentNode.firstName)){
-
-                System.out.print("ID\tLAST\tFIRST\tSALARY");
-                System.out.println();
-                System.out.printf("%d\t%s\t%s\t%.2f", currentNode.idNumber, currentNode.lastName, currentNode.firstName, currentNode.salary);
-            }else if(param.equals(currentNode.lastName)){
-
-                System.out.print("ID\tLAST\tFIRST\tSALARY");
-                System.out.println();
-                System.out.printf("%d\t%s\t%s\t%.2f", currentNode.idNumber, currentNode.lastName, currentNode.firstName, currentNode.salary);
-            }
-            currentNode = currentNode.next;
+    int totalSize(){
+        Node sizeNode = head;
+        int counter = 0;
+        while(sizeNode.next != null){
+            counter++;
+            sizeNode = sizeNode.next;
         }
+        return counter;
     }
+
+    void searchEmployee(String param) {
+        Node currentNode = head;
+        Node lastNode;
+        String theFirstName = currentNode.firstName.toLowerCase();
+        String theLastName = currentNode.lastName.toLowerCase();
+        param = param.toLowerCase();
+        System.out.print("ID\tLAST\tFIRST\tSALARY");
+        System.out.println();
+
+        while(currentNode != null){
+            if (param.equals(theFirstName) || param.equals(theLastName)) {
+
+                System.out.printf("\n%d\t%s\t%s\t%.2f", currentNode.idNumber, currentNode.lastName, currentNode.firstName, currentNode.salary);
+            }
+            lastNode = currentNode;
+            currentNode = currentNode.next;
+            if (currentNode == null){
+                System.out.printf("\n%d\t%s\t%s\t%.2f", lastNode.idNumber, lastNode.lastName, lastNode.firstName, lastNode.salary);
+            }
+        }
+
+
+
+    }
+
 
 
     void displayAll(){
@@ -183,6 +202,7 @@ class EmployeeList{
             ptr = ptr.next;
         }
         preptr.next = ptr.next;
+        ptr = null;
     }
 
     void sortEmployeesBySalary(){
