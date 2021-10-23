@@ -1,6 +1,6 @@
 /**
  * Cebu Technological University - Main Campus
- * File: Bank Account console program with Encapsulation in Java
+ * File: A CLI Employee Portal in Java
  * Date: October 23, 2021
  * Programmer: Rian Rey Barriga
  * Section: BSIT-II-2
@@ -40,11 +40,11 @@ public class Main {
             System.out.println("8. Exit");
 
             // A try-catch block to fetch an exception if there is any
-            try{
+            try {
                 System.out.print("Enter answer: ");
                 option = scans.nextLine();
                 choice = Integer.parseInt(option);
-            }catch(Exception e){
+            } catch (Exception e) {
                 System.out.print("\nPlease enter an Integer!");
             }
 
@@ -56,15 +56,24 @@ public class Main {
                     // variable initialization
                     int idNumber = 0;
                     double salary = 0.0;
+                    boolean isUnique = true;
 
                     // a while loop to ask unser input until the the input value is corret
-                    while(idNumber < 1){
+                    while (idNumber < 1) {
                         // a try catch block to fetch any error if there is any
-                        try{
-                            System.out.println("Enter employee's ID number: ");
-                            String tempNumber = scans.nextLine();
-                            idNumber = Integer.parseInt(tempNumber);
-                        }catch(Exception e){
+                        try {
+                            // loop until the ID is unique
+                            while (isUnique) {
+                                System.out.println("\nEnter employee's ID number: ");
+                                String tempNumber = scans.nextLine();
+                                idNumber = Integer.parseInt(tempNumber);
+                                isUnique = list.iDChecker(idNumber);
+                                // check for uniqueness of ID
+                                if (isUnique) {
+                                    System.out.print("\nThis ID already exists!");
+                                }
+                            }
+                        } catch (Exception e) {
                             System.out.println("\nPlease enter an Integer!");
                         }
                     }
@@ -75,14 +84,17 @@ public class Main {
                     String lastName = scans.nextLine();
                     // another while loop to ask for the value of salary in double format
                     // this will run until a correct data type is entered
-                    while(salary < 1.0){
+                    while (salary < 1.0) {
                         // a try catch block to fetch potential exceptions
-                        try{
+                        try {
                             System.out.println("\nEnter employee's salary: ");
                             String tempSalary = scans.nextLine();
                             salary = Double.parseDouble(tempSalary);
-                        }catch(Exception e){
+                        } catch (Exception e) {
                             System.out.print("Please integer a floating point number!");
+                        }
+                        if (salary == 0){
+                            System.out.print("Please enter salary above 0!");
                         }
                     }
 
@@ -117,9 +129,9 @@ public class Main {
                     // variable initialization
                     int idToDelete = 0;
                     // a loop to continuously ask the user to input data type
-                    while(idToDelete < 1){
+                    while (idToDelete < 1) {
                         // a try catch block to in case of error
-                        try{
+                        try {
                             System.out.println("\nEnter the ID to delete: ");
                             String tempIdToDelete = scans.nextLine();
                             idToDelete = Integer.parseInt(tempIdToDelete);
@@ -127,9 +139,9 @@ public class Main {
                             System.out.println("\n===== The new list =====");
                             list.displayAll();
                             // warning if there is no record
-                        }catch(NullPointerException e){
+                        } catch (NullPointerException e) {
                             System.out.print("You don't have an employee!");
-                        }catch(NumberFormatException e){ // warning if the data entered is not int
+                        } catch (NumberFormatException e) { // warning if the data entered is not int
                             System.out.print("Please enter an Integer!");
                         }
                     }
@@ -177,7 +189,7 @@ class EmployeeList {
         node.lastName = lastName;
         node.idNumber = idNumber;
         node.salary = salary;
-    // check if this is the first node
+        // check if this is the first node
         if (head == null) {
             head = node;
         } else { // check if it is not the first node
@@ -271,10 +283,10 @@ class EmployeeList {
     void deleteEmployeeByID(int id) {
         Node ptr, preptr = new Node();
         ptr = head;
-        if (id == head.idNumber){
+        if (id == head.idNumber) {
             head = head.next;
-        }else{
-            while(ptr.idNumber != id) {
+        } else {
+            while (ptr.idNumber != id) {
                 preptr = ptr;
                 ptr = ptr.next;
             }
@@ -307,12 +319,24 @@ class EmployeeList {
     }
 
     // a method that keeps track of the length of the linkedlist
-    int linkListLength(){
+    int linkListLength() {
         int index = 1;
         Node counterNode = head;
-        while(counterNode.next != null){
+        while (counterNode.next != null) {
             index++;
         }
-        return  index;
+        return index;
+    }
+
+    // a method to check if the ID already exists
+    boolean iDChecker(int id) {
+        Node checkerNode = head;
+        while (checkerNode != null) {
+            if (id == checkerNode.idNumber) {
+                return true;
+            }
+            checkerNode = checkerNode.next;
+        }
+        return false;
     }
 }
