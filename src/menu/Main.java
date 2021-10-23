@@ -200,11 +200,11 @@ class EmployeeList {
     }
 
     void deleteEmployeeByID(int id) {
+        Node ptr, preptr = new Node();
+        ptr = head;
         if (id == head.idNumber){
             head = head.next;
         }else{
-            Node ptr, preptr = new Node();
-            ptr = head;
             while(ptr.idNumber != id) {
                 preptr = ptr;
                 ptr = ptr.next;
