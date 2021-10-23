@@ -9,7 +9,7 @@ public class Main {
         Scanner scans = new Scanner(System.in);
         EmployeeList list = new EmployeeList();
         String option;
-        int choice;
+        int choice = 0;
 
         do {
             System.out.println("\n====== Welcome to Employee Portal ======");
@@ -21,23 +21,41 @@ public class Main {
             System.out.println("6. Delete an Employee based on the ID ");
             System.out.println("7. Display and count employee according to the salary range.");
             System.out.println("8. Exit");
-            System.out.print("Enter answer: ");
-            option = scans.nextLine();
-            choice = Integer.parseInt(option);
+
+            try{
+                System.out.print("Enter answer: ");
+                option = scans.nextLine();
+                choice = Integer.parseInt(option);
+            }catch(Exception e){
+                System.out.print("\nPlease enter an Integer!");
+            }
             switch (choice) {
                 case 1:
-
-                    System.out.println("Enter employee's ID number: ");
-                    String tempNumber = scans.nextLine();
-                    int idNumber = Integer.parseInt(tempNumber);
-                    System.out.println("Enter employee's firstname: ");
+                    int idNumber = 0;
+                    double salary = 0.0;
+                    while(idNumber < 1){
+                        try{
+                            System.out.println("Enter employee's ID number: ");
+                            String tempNumber = scans.nextLine();
+                            idNumber = Integer.parseInt(tempNumber);
+                        }catch(Exception e){
+                            System.out.println("\nPlease enter an Integer!");
+                        }
+                    }
+                    System.out.println("\nEnter employee's firstname: ");
                     String firstName = scans.nextLine();
                     System.out.println("Enter employee's lastname: ");
                     String lastName = scans.nextLine();
-                    System.out.println("Enter employee's salary: ");
-                    String tempSalary = scans.nextLine();
-                    double salary = Double.parseDouble(tempSalary);
-                    list.addEmployee(firstName, lastName, idNumber, salary);
+                    while(salary < 1.0){
+                        try{
+                            System.out.println("\nEnter employee's salary: ");
+                            String tempSalary = scans.nextLine();
+                            salary = Double.parseDouble(tempSalary);
+                            list.addEmployee(firstName, lastName, idNumber, salary);
+                        }catch(Exception e){
+                            System.out.print("Please integer a floating point number!");
+                        }
+                    }
                     break;
 
                 case 2:
@@ -131,19 +149,15 @@ class EmployeeList {
         while (currentNode != null) {
             if (param.equals(theFirstName) || param.equals(theLastName)) {
                 System.out.printf("\n%d\t%s\t%s\t%.2f", currentNode.idNumber, currentNode.lastName, currentNode.firstName, currentNode.salary);
-            }else{
-                System.out.print("\nEmployee not found!");
-
+                break;
             }
+
             lastNode = currentNode;
             currentNode = currentNode.next;
             if (currentNode == null) {
                 System.out.printf("\n%d\t%s\t%s\t%.2f", lastNode.idNumber, lastNode.lastName, lastNode.firstName, lastNode.salary);
             }
         }
-
-
-
     }
 
 
@@ -196,17 +210,21 @@ class EmployeeList {
     }
 
     void deleteEmployeeByID(int id) {
-        Node ptr, preptr = new Node();
+        if (id == head.idNumber){
+            head = head.next;
+        }else{
+            Node ptr, preptr = new Node();
 
-        ptr = head;
+            ptr = head;
 
-        while(ptr.idNumber != id) {
-            preptr = ptr;
-            ptr = ptr.next;
+            while(ptr.idNumber != id) {
+                preptr = ptr;
+                ptr = ptr.next;
+            }
+
+            preptr.next = ptr.next;
+            ptr = null;
         }
-
-        preptr.next = ptr.next;
-        ptr = null;
     }
 
     void sortEmployeesBySalary() {
