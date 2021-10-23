@@ -128,15 +128,6 @@ class EmployeeList {
         }
     }
 
-    int totalSize() {
-        Node sizeNode = head;
-        int counter = 0;
-        while (sizeNode.next != null) {
-            counter++;
-            sizeNode = sizeNode.next;
-        }
-        return counter;
-    }
 
     void searchEmployee(String param) {
         Node currentNode = head;
