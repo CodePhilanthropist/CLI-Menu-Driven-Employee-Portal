@@ -127,11 +127,13 @@ class EmployeeList {
         String theLastName = currentNode.lastName.toLowerCase();
         param = param.toLowerCase();
         System.out.print("ID\tLAST\tFIRST\tSALARY");
-        System.out.println();
 
         while (currentNode != null) {
             if (param.equals(theFirstName) || param.equals(theLastName)) {
                 System.out.printf("\n%d\t%s\t%s\t%.2f", currentNode.idNumber, currentNode.lastName, currentNode.firstName, currentNode.salary);
+            }else{
+                System.out.print("\nEmployee not found!");
+
             }
             lastNode = currentNode;
             currentNode = currentNode.next;
@@ -195,12 +197,14 @@ class EmployeeList {
 
     void deleteEmployeeByID(int id) {
         Node ptr, preptr = new Node();
+
         ptr = head;
 
-        while (ptr.idNumber != id) {
+        while(ptr.idNumber != id) {
             preptr = ptr;
             ptr = ptr.next;
         }
+
         preptr.next = ptr.next;
         ptr = null;
     }
