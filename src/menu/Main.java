@@ -93,6 +93,7 @@ public class Main {
                         } catch (Exception e) {
                             System.out.print("Please integer a floating point number!");
                         }
+                        // show warning if the input amount is 0
                         if (salary == 0){
                             System.out.print("Please enter salary above 0!");
                         }
