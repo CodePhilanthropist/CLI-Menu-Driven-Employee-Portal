@@ -11,7 +11,7 @@ public class Main {
         String option;
         int choice;
 
-        do{
+        do {
             System.out.println("\n====== Welcome to Employee Portal ======");
             System.out.println("1. Add Employee");
             System.out.println("2. Search Employee");
@@ -24,7 +24,7 @@ public class Main {
             System.out.print("Enter answer: ");
             option = scans.nextLine();
             choice = Integer.parseInt(option);
-            switch (choice){
+            switch (choice) {
                 case 1:
 
                     System.out.println("Enter employee's ID number: ");
@@ -41,11 +41,11 @@ public class Main {
                     break;
 
                 case 2:
-                    try{
+                    try {
                         System.out.println("Search with firstname or lastname: ");
                         String searchQuery = scans.nextLine();
                         list.searchEmployee(searchQuery);
-                    }catch (NullPointerException e){
+                    } catch (NullPointerException e) {
                         System.out.print("You have no employees!");
                     }
                     break;
@@ -77,11 +77,11 @@ public class Main {
                     System.out.println();
                     break;
             }
-        }while(choice != 8);
+        } while (choice != 8);
     }
 }
 
-class Node{
+class Node {
     String firstName;
     String lastName;
     int idNumber;
@@ -89,31 +89,31 @@ class Node{
     Node next;
 }
 
-class EmployeeList{
+class EmployeeList {
     Node head;
 
-    void addEmployee(String firstName, String lastName, int idNumber, double salary){
+    void addEmployee(String firstName, String lastName, int idNumber, double salary) {
         Node node = new Node();
         node.firstName = firstName;
         node.lastName = lastName;
         node.idNumber = idNumber;
         node.salary = salary;
 
-        if (head == null){
+        if (head == null) {
             head = node;
-        }else{
+        } else {
             Node pointer = head;
-            while(pointer.next != null){
+            while (pointer.next != null) {
                 pointer = pointer.next;
             }
             pointer.next = node;
         }
     }
 
-    int totalSize(){
+    int totalSize() {
         Node sizeNode = head;
         int counter = 0;
-        while(sizeNode.next != null){
+        while (sizeNode.next != null) {
             counter++;
             sizeNode = sizeNode.next;
         }
@@ -125,39 +125,35 @@ class EmployeeList{
         Node lastNode = null;
         String theFirstName = currentNode.firstName.toLowerCase();
         String theLastName = currentNode.lastName.toLowerCase();
-        String theFirstName2 = currentNode.firstName.toLowerCase();
-        String theLastName2 = currentNode.lastName.toLowerCase();
         param = param.toLowerCase();
         System.out.print("ID\tLAST\tFIRST\tSALARY");
         System.out.println();
 
-        while(currentNode != null){
+        while (currentNode != null) {
             if (param.equals(theFirstName) || param.equals(theLastName)) {
                 System.out.printf("\n%d\t%s\t%s\t%.2f", currentNode.idNumber, currentNode.lastName, currentNode.firstName, currentNode.salary);
-
-            }else{
-                lastNode = currentNode;
-                currentNode = currentNode.next;
-                if(currentNode==null){
-                    System.out.printf("\n%d\t%s\t%s\t%.2f", lastNode.idNumber, lastNode.lastName, lastNode.firstName, lastNode.salary);
-                }
             }
-
+            lastNode = currentNode;
+            currentNode = currentNode.next;
+            if (currentNode == null) {
+                System.out.printf("\n%d\t%s\t%s\t%.2f", lastNode.idNumber, lastNode.lastName, lastNode.firstName, lastNode.salary);
+            }
         }
+
 
 
     }
 
 
-    void displayAll(){
-        if(head == null){
+    void displayAll() {
+        if (head == null) {
             System.out.println("There is no employee!");
             System.out.println();
-        }else{
+        } else {
             Node displayerNode = head;
 
             System.out.print("ID\tLAST\tFIRST\tSALARY");
-            while(displayerNode.next != null){
+            while (displayerNode.next != null) {
                 System.out.printf("\n%d\t%s\t%s\t%.2f", displayerNode.idNumber, displayerNode.lastName, displayerNode.firstName, displayerNode.salary);
                 displayerNode = displayerNode.next;
             }
@@ -165,13 +161,13 @@ class EmployeeList{
         }
     }
 
-    void totalEmployee(){
+    void totalEmployee() {
         Node totalNode = head;
         int total = 1;
-        if (totalNode == null){
+        if (totalNode == null) {
             System.out.println("There is no employee!");
-        }else{
-            while(totalNode.next != null){
+        } else {
+            while (totalNode.next != null) {
                 total++;
                 totalNode = totalNode.next;
             }
@@ -179,29 +175,29 @@ class EmployeeList{
         }
     }
 
-    void getAverageSalary(){
+    void getAverageSalary() {
         Node averageSalaryNode = head;
         double salaryCounter = 0.0, finalSalary;
         int listIndex = 1;
-        if (head == null){
+        if (head == null) {
             System.out.println("There is no employee!");
-        }else{
-            while(averageSalaryNode.next != null){
+        } else {
+            while (averageSalaryNode.next != null) {
                 salaryCounter += averageSalaryNode.salary;
                 listIndex++;
                 averageSalaryNode = averageSalaryNode.next;
             }
             salaryCounter += averageSalaryNode.salary;
-            finalSalary = salaryCounter/listIndex;
+            finalSalary = salaryCounter / listIndex;
             System.out.printf("The average salary is %.2f", finalSalary);
         }
     }
 
-    void deleteEmployeeByID(int id){
+    void deleteEmployeeByID(int id) {
         Node ptr, preptr = new Node();
         ptr = head;
 
-        while(ptr.idNumber != id) {
+        while (ptr.idNumber != id) {
             preptr = ptr;
             ptr = ptr.next;
         }
@@ -209,17 +205,17 @@ class EmployeeList{
         ptr = null;
     }
 
-    void sortEmployeesBySalary(){
+    void sortEmployeesBySalary() {
         Node employeeNode = head;
         Node index = null;
         double holder;
-        if (head == null){
+        if (head == null) {
             System.out.println("There is no employee!");
-        }else{
-            while(employeeNode != null){
+        } else {
+            while (employeeNode != null) {
                 index = employeeNode.next;
-                while(index != null){
-                    if(employeeNode.salary > index.salary){
+                while (index != null) {
+                    if (employeeNode.salary > index.salary) {
                         holder = employeeNode.salary;
                         employeeNode.salary = index.salary;
                         index.salary = holder;
