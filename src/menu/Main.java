@@ -128,7 +128,6 @@ class EmployeeList {
         }
     }
 
-
     void searchEmployee(String param) {
         Node currentNode = head;
         Node lastNode = null;
@@ -205,14 +204,11 @@ class EmployeeList {
             head = head.next;
         }else{
             Node ptr, preptr = new Node();
-
             ptr = head;
-
             while(ptr.idNumber != id) {
                 preptr = ptr;
                 ptr = ptr.next;
             }
-
             preptr.next = ptr.next;
             ptr = null;
         }
